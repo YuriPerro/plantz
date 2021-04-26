@@ -12,8 +12,10 @@ import {
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 import { Button } from '../components/Button';
+import { useNavigation } from '@react-navigation/core';
 
 export function UserIdentification() {
+    const navigation = useNavigation();
 
     const [isFocused, setIsFocused] = useState(false);
     const [isFiled, setIsFiled] = useState(false);
@@ -31,6 +33,10 @@ export function UserIdentification() {
     function handleInputChange(value: string) {
         setIsFiled(!!value);
         setName(value);
+    }
+
+    function handleSubmit() {
+        navigation.navigate('Confirmation')
     }
 
     return (
@@ -64,7 +70,10 @@ export function UserIdentification() {
                         />
 
                         <View style={styles.footer}>
-                            <Button title="Confirmar" />
+                            <Button
+                                onPress={handleSubmit}
+                                title="Confirmar"
+                            />
                         </View>
                     </View>
                 </View>
