@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: colors.white,
-        fontSize: 30
+        fontSize: 30,
+        fontFamily: fonts.heading
     }
 })
