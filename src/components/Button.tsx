@@ -10,7 +10,7 @@ import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 
 interface ButtonProps extends TouchableOpacityProps {
-    title: string;
+    title?: string;
 }
 
 export function Button({ title, ...rest }: ButtonProps) {
@@ -21,7 +21,7 @@ export function Button({ title, ...rest }: ButtonProps) {
             {...rest}
         >
             <Text style={styles.buttonText}>
-                {title}
+                {title ? title : "OK"}
             </Text>
         </TouchableOpacity>
     )
@@ -29,17 +29,16 @@ export function Button({ title, ...rest }: ButtonProps) {
 
 const styles = StyleSheet.create({
     button: {
-        width: 56,
         height: 56,
         backgroundColor: colors.green,
-        borderRadius: 15,
+        borderRadius: 16,
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 10
     },
     buttonText: {
         color: colors.white,
-        fontSize: 30,
+        fontSize: 20,
         fontFamily: fonts.heading
     }
 })
