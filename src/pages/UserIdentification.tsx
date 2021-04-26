@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     SafeAreaView,
     StyleSheet,
@@ -14,6 +14,25 @@ import fonts from '../styles/fonts';
 import { Button } from '../components/Button';
 
 export function UserIdentification() {
+
+    const [isFocused, setIsFocused] = useState(false);
+    const [isFiled, setIsFiled] = useState(false);
+    const [name, setName] = useState<string>();
+
+    function handleInputBlur() {
+        setIsFocused(false);
+        setIsFiled(!!name);
+    }
+
+    function handleInputFocus() {
+        setIsFocused(true)
+    }
+
+    function handleInputChange(value: string) {
+        setIsFiled(!!value);
+        setName(value);
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             <KeyboardAvoidingView
@@ -24,16 +43,24 @@ export function UserIdentification() {
                     <View style={styles.form}>
                         <View style={styles.header}>
                             <Text style={styles.emoji}>
-                                😀
+                                {isFiled ? '😎' : '😀'}
                             </Text>
                             <Text style={styles.title}>
-                                Como podemos {`\n`} chamar você?
-                        </Text>
+                                Como podemos {`\n`}
+                                chamar você?
+                            </Text>
                         </View>
 
                         <TextInput
-                            style={styles.input}
+                            style={[
+                                styles.input,
+                                (isFocused || isFiled) &&
+                                { borderColor: colors.green }
+                            ]}
                             placeholder="Digite um nome"
+                            onBlur={handleInputBlur}
+                            onFocus={handleInputFocus}
+                            onChangeText={handleInputChange}
                         />
 
                         <View style={styles.footer}>
