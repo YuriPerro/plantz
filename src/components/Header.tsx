@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingVertical: 20,
         marginTop: marginWithPlatform,
-        padding: 20
     },
     img: {
         width: 60,
