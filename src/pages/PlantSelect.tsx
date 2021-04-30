@@ -8,7 +8,12 @@ export function PlantSelect() {
     return (
         <View style={styles.container}>
             <Header />
-            <Text> SHOW </Text>
+            <Text>
+                Em qual ambiente
+                </Text>
+            <Text>
+                você quer colocar sua planta?
+                </Text>
         </View>
     )
 }
