@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     StyleSheet,
     View,
@@ -9,6 +9,8 @@ import {
 } from 'react-native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import YuriProfile from '../assets/yuriPerro.png';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
@@ -16,11 +18,23 @@ import fonts from '../styles/fonts';
 let marginWithPlatform = Platform.OS === 'ios' ? getStatusBarHeight() : StatusBar.currentHeight
 
 export function Header() {
+
+    const [userName, setUserName] = useState<string>();
+
+    useEffect(() => {
+        async function loadUserNameStorage(){
+            const name = await AsyncStorage.getItem('@plantmanager:userName');
+            setUserName(name || '');
+        }
+
+        loadUserNameStorage();
+    }, [userName])
+
     return (
         <View style={styles.container}>
             <View>
                 <Text style={styles.greeting}>Olá,</Text>
-                <Text style={styles.userName}>Yuri</Text>
+                <Text style={styles.userName}>{userName}</Text>
             </View>
 
             <Image source={YuriProfile} style={styles.img} />
