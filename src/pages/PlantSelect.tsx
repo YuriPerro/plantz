@@ -68,8 +68,6 @@ export function PlantSelect() {
         if (!data)
             return setLoading(true);
 
-        console.log(data)
-
         if (page > 1) {
             setPlants(oldValue => [...oldValue, ...data]);
             setFilteredPlants(oldValue => [...oldValue, ...data]);
@@ -149,7 +147,11 @@ export function PlantSelect() {
                     }}
                     ListFooterComponent={
                         loadingMore ?
-                            <ActivityIndicator color={colors.green} />
+                            <ActivityIndicator 
+                            style={{ marginVertical: 20}} 
+                            color={colors.green} 
+                            size='large'
+                            />
                             :
                             <></>
                     }
