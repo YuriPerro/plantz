@@ -119,6 +119,7 @@ export function PlantSelect() {
             <View>
                 <FlatList
                     data={enviroments}
+                    keyExtractor={(item) => String(item.key)}
                     renderItem={({ item, index }) => (
                         <EnviromentButton
                             key={index}
@@ -135,6 +136,7 @@ export function PlantSelect() {
             <View style={styles.plants}>
                 <FlatList
                     data={filteredPlants}
+                    keyExtractor={(item) => String(item.id)}
                     renderItem={({ item, index }) => (
                         <PlantCardPrimary key={index} data={item} />
                     )}
@@ -147,10 +149,10 @@ export function PlantSelect() {
                     }}
                     ListFooterComponent={
                         loadingMore ?
-                            <ActivityIndicator 
-                            style={{ marginVertical: 20}} 
-                            color={colors.green} 
-                            size='large'
+                            <ActivityIndicator
+                                style={{ marginVertical: 20 }}
+                                color={colors.green}
+                                size='large'
                             />
                             :
                             <></>
