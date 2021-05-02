@@ -39,7 +39,6 @@ export function PlantSelect() {
 
     const [page, setPage] = useState(1);
     const [loadingMore, setLoadingMore] = useState(false);
-    const [loadedAll, setLoadedAll] = useState(false);
 
     useEffect(() => {
         async function fetchEnviroment() {
