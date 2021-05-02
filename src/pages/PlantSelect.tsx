@@ -31,10 +31,10 @@ interface PlantsProps {
 
 export function PlantSelect() {
 
-    const [enviroments, setEnviroments] = useState<EnviromentProps[]>();
-    const [plants, setPlants] = useState<PlantsProps[]>();
+    const [enviroments, setEnviroments] = useState<EnviromentProps[]>([]);
+    const [filteredPlants, setFilteredPlants] = useState<PlantsProps[]>([]);
+    const [plants, setPlants] = useState<PlantsProps[]>([]);
     const [loading, setLoading] = useState(true);
-    const [filteredPlants, setFilteredPlants] = useState<PlantsProps[]>();
     const [enviromentSelected, setEnviromentSelected] = useState('all');
 
     const [page, setPage] = useState(1);
@@ -63,10 +63,12 @@ export function PlantSelect() {
 
     async function fetchPlants() {
         const { data } = await api
-            .get(`plants?_sort=name&_order=asc&_page${page}&_limit=8`);
+            .get(`plants?_sort=name&_order=asc&_page=${page}&_limit=8`);
 
         if (!data)
-            return setLoading(false);
+            return setLoading(true);
+
+        console.log(data)
 
         if (page > 1) {
             setPlants(oldValue => [...oldValue, ...data]);
@@ -97,8 +99,6 @@ export function PlantSelect() {
         if (distance < 1)
             return;
 
-        console.log(distance)
-
         setLoadingMore(true);
         setPage(oldValue => oldValue + 1);
         fetchPlants();
@@ -121,8 +121,9 @@ export function PlantSelect() {
             <View>
                 <FlatList
                     data={enviroments}
-                    renderItem={({ item }) => (
+                    renderItem={({ item, index }) => (
                         <EnviromentButton
+                            key={index}
                             active={item.key === enviromentSelected ? true : false}
                             onPress={() => handleEnviromentSelected(item.key)}
                             title={item.title} />
@@ -136,16 +137,16 @@ export function PlantSelect() {
             <View style={styles.plants}>
                 <FlatList
                     data={filteredPlants}
-                    renderItem={({ item }) => (
-                        <PlantCardPrimary data={item} />
+                    renderItem={({ item, index }) => (
+                        <PlantCardPrimary key={index} data={item} />
                     )}
                     showsVerticalScrollIndicator={false}
                     numColumns={2}
                     contentContainerStyle={styles.contentContainerStyle}
-                    onEndReachedThreshold={0.3}
-                    onEndReached={({ distanceFromEnd }) =>
-                        handleFetchMore(distanceFromEnd)
-                    }
+                    onEndReachedThreshold={0.1}
+                    onEndReached={({ distanceFromEnd }) => {
+                        handleFetchMore(distanceFromEnd);
+                    }}
                     ListFooterComponent={
                         loadingMore ?
                             <ActivityIndicator color={colors.green} />
