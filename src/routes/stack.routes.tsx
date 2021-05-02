@@ -23,22 +23,18 @@ const AppRoutes: React.FC = () => (
             name="Welcome"
             component={Welcome}
         />
-
         <stackRoutes.Screen
             name="UserIdentification"
             component={UserIdentification}
         />
-
         <stackRoutes.Screen
             name="Confirmation"
             component={Confirmation}
         />
-
         <stackRoutes.Screen
             name="PlantSelect"
             component={PlantSelect}
         />
-
     </stackRoutes.Navigator>
 )
 
