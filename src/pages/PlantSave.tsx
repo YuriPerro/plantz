@@ -19,7 +19,7 @@ import { Button } from '../components/Button';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 import { format, isBefore } from 'date-fns';
-import { PlantProps } from '../libs/storage';
+import { loadPlant, PlantProps, savePlant } from '../libs/storage';
 
 interface Params {
     plant: PlantProps
@@ -39,6 +39,8 @@ export function PlantSave() {
             setShowDatePicker(oldState => !oldState);
         }
 
+        console.log(dateTime, new Date())
+
         if (dateTime && isBefore(dateTime, new Date())) {
             setSelectedDateTime(new Date());
             return Alert.alert(
@@ -53,6 +55,22 @@ export function PlantSave() {
 
     function handleOpenDateTimePickerForAndroid() {
         setShowDatePicker(oldState => !oldState);
+    }
+
+    async function handleSave() {
+        const data = await loadPlant();
+        try {
+            await savePlant({
+                ...plant,
+                dateTimeNotification: selectedDateTime
+            });
+
+        } catch (error) {
+            Alert.alert(
+                'Ops',
+                'Não foi possível salvar! 😥'
+            )
+        }
     }
 
     return (
@@ -90,7 +108,7 @@ export function PlantSave() {
                     showDatePicker && (
                         <DateTimePicker
                             value={selectedDateTime}
-                            mode='time'
+                            mode='datetime'
                             display='spinner'
                             onChange={handleChangeTime}
                         />
@@ -110,7 +128,7 @@ export function PlantSave() {
                     )
                 }
 
-                <Button title="Cadastrar planta" onPress={() => { }} />
+                <Button title="Cadastrar planta" onPress={() => { handleSave }} />
             </View>
         </View>
     )
