@@ -11,23 +11,11 @@ import { Load } from '../components/Load';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 import { useNavigation } from '@react-navigation/core';
+import { PlantProps } from '../libs/storage';
 
 interface EnviromentProps {
     key: string,
     title: string
-}
-
-interface PlantsProps {
-    id: string;
-    name: string;
-    about: string;
-    water_tips: string;
-    photo: string;
-    environments: [string];
-    frequency: {
-        times: number;
-        repeat_every: string;
-    }
 }
 
 export function PlantSelect() {
@@ -35,8 +23,8 @@ export function PlantSelect() {
     const navigation = useNavigation();
 
     const [enviroments, setEnviroments] = useState<EnviromentProps[]>([]);
-    const [filteredPlants, setFilteredPlants] = useState<PlantsProps[]>([]);
-    const [plants, setPlants] = useState<PlantsProps[]>([]);
+    const [filteredPlants, setFilteredPlants] = useState<PlantProps[]>([]);
+    const [plants, setPlants] = useState<PlantProps[]>([]);
     const [loading, setLoading] = useState(true);
     const [enviromentSelected, setEnviromentSelected] = useState('all');
 
@@ -104,8 +92,8 @@ export function PlantSelect() {
         fetchPlants();
     }
 
-    function handlePlantSelect(plant: PlantsProps) {
-        navigation.navigate('PlantSave');
+    function handlePlantSelect(plant: PlantProps) {
+        navigation.navigate('PlantSave', { plant });
     }
 
     if (loading)

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     View,
     Text,
@@ -11,27 +11,63 @@ import {
 } from 'react-native';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 import { SvgFromUri } from 'react-native-svg';
+import { useRoute } from '@react-navigation/core';
+import DateTimePicker, { Event } from '@react-native-community/datetimepicker'
 
 import waterDrop from '../assets/waterdrop.png';
 import { Button } from '../components/Button';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
+import { format, isBefore } from 'date-fns';
+import { PlantProps } from '../libs/storage';
+
+interface Params {
+    plant: PlantProps
+}
 
 export function PlantSave() {
+
+    const route = useRoute();
+
+    const { plant } = route.params as Params;
+
+    const [selectedDateTime, setSelectedDateTime] = useState(new Date());
+    const [showDatePicker, setShowDatePicker] = useState(Platform.OS === 'ios');
+
+    function handleChangeTime(event: Event, dateTime: Date | undefined) {
+        if (Platform.OS === 'android') {
+            setShowDatePicker(oldState => !oldState);
+        }
+
+        if (dateTime && isBefore(dateTime, new Date())) {
+            setSelectedDateTime(new Date());
+            return Alert.alert(
+                'Ops',
+                'Escolha um horário no futuro! ⏰'
+            )
+        }
+
+        if (dateTime)
+            setSelectedDateTime(dateTime);
+    }
+
+    function handleOpenDateTimePickerForAndroid() {
+        setShowDatePicker(oldState => !oldState);
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.plantInfo}>
                 <SvgFromUri
-                    uri=""
+                    uri={plant.photo}
                     width={150}
                     height={150}
                 />
                 <Text style={styles.plantName}>
-                    Nome da planta
+                    {plant.name}
                 </Text>
                 <Text style={styles.plantAbout}>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam sequi quae voluptatibus
-                    perferendis temporibus, adipisci necessitatibus! Earum harum, enim mollitia odio soluta assumenda
+                    {plant.about}
                 </Text>
             </View>
 
@@ -42,12 +78,38 @@ export function PlantSave() {
                         style={styles.tipImage}
                     />
                     <Text style={styles.tipText}>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing 
+                        {plant.water_tips}
                     </Text>
                 </View>
                 <Text style={styles.alertLable}>
                     Escolha o melhor horário para ser lembrado.
                 </Text>
+
+
+                {
+                    showDatePicker && (
+                        <DateTimePicker
+                            value={selectedDateTime}
+                            mode='time'
+                            display='spinner'
+                            onChange={handleChangeTime}
+                        />
+                    )
+                }
+
+                {
+                    Platform.OS === 'android' && (
+                        <TouchableOpacity
+                            style={styles.dateTimePickerButton}
+                            onPress={handleOpenDateTimePickerForAndroid}
+                        >
+                            <Text style={styles.dateTimePickerText}>
+                                {`Mudar ${format(selectedDateTime, 'HH:mm')}`}
+                            </Text>
+                        </TouchableOpacity>
+                    )
+                }
+
                 <Button title="Cadastrar planta" onPress={() => { }} />
             </View>
         </View>
@@ -79,7 +141,8 @@ const styles = StyleSheet.create({
         fontFamily: fonts.text,
         color: colors.heading,
         fontSize: 17,
-        marginTop: 10
+        marginTop: 10,
+        marginBottom: 10
     },
     controller: {
         backgroundColor: colors.white,
@@ -105,7 +168,7 @@ const styles = StyleSheet.create({
         flex: 1,
         marginLeft: 20,
         fontFamily: fonts.text,
-        color:colors.blue,
+        color: colors.blue,
         fontSize: 17,
         textAlign: 'justify'
     },
@@ -115,5 +178,15 @@ const styles = StyleSheet.create({
         color: colors.heading,
         fontSize: 12,
         marginBottom: 5
+    },
+    dateTimePickerButton: {
+        width: '100%',
+        alignItems: 'center',
+        paddingVertical: 40
+    },
+    dateTimePickerText: {
+        color: colors.heading,
+        fontSize: 24,
+        fontFamily: fonts.text
     }
 })
