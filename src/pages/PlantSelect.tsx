@@ -136,7 +136,6 @@ export function PlantSelect() {
                     )}
                     showsVerticalScrollIndicator={false}
                     numColumns={2}
-                    contentContainerStyle={styles.contentContainerStyle}
                     onEndReachedThreshold={0.1}
                     onEndReached={({ distanceFromEnd }) => {
                         handleFetchMore(distanceFromEnd);
@@ -190,8 +189,5 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: 32,
         justifyContent: 'center'
-    },
-    contentContainerStyle: {
-
     }
 });

@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 import { SvgFromUri } from 'react-native-svg';
-import { useRoute } from '@react-navigation/core';
+import { useNavigation, useRoute } from '@react-navigation/core';
 import DateTimePicker, { Event } from '@react-native-community/datetimepicker'
 
 import waterDrop from '../assets/waterdrop.png';
@@ -19,7 +19,7 @@ import { Button } from '../components/Button';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 import { format, isBefore } from 'date-fns';
-import { loadPlant, PlantProps, savePlant } from '../libs/storage';
+import { PlantProps, savePlant } from '../libs/storage';
 
 interface Params {
     plant: PlantProps
@@ -28,7 +28,7 @@ interface Params {
 export function PlantSave() {
 
     const route = useRoute();
-
+    const navigation = useNavigation();
     const { plant } = route.params as Params;
 
     const [selectedDateTime, setSelectedDateTime] = useState(new Date());
@@ -39,15 +39,13 @@ export function PlantSave() {
             setShowDatePicker(oldState => !oldState);
         }
 
-        console.log(dateTime, new Date())
-
-        if (dateTime && isBefore(dateTime, new Date())) {
+        /*if (dateTime && isBefore(dateTime, new Date())) {
             setSelectedDateTime(new Date());
             return Alert.alert(
                 'Ops',
                 'Escolha um horário no futuro! ⏰'
             )
-        }
+        }*/
 
         if (dateTime)
             setSelectedDateTime(dateTime);
@@ -58,11 +56,19 @@ export function PlantSave() {
     }
 
     async function handleSave() {
-        const data = await loadPlant();
         try {
             await savePlant({
                 ...plant,
                 dateTimeNotification: selectedDateTime
+            });
+
+            navigation.navigate('Confirmation', {
+                title: 'Tudo certo!',
+                subTitle: 'Fique tranquilo que sempre vamos lembrar você de cuidar da sua plantinha' +
+                    'com muito cuidado',
+                buttonTitle: 'Muito obrigado :)',
+                icon: 'hug',
+                nextScreen: 'MyPlants'
             });
 
         } catch (error) {
@@ -74,7 +80,7 @@ export function PlantSave() {
     }
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <View style={styles.plantInfo}>
                 <SvgFromUri
                     uri={plant.photo}
@@ -108,7 +114,7 @@ export function PlantSave() {
                     showDatePicker && (
                         <DateTimePicker
                             value={selectedDateTime}
-                            mode='datetime'
+                            mode='time'
                             display='spinner'
                             onChange={handleChangeTime}
                         />
@@ -128,20 +134,18 @@ export function PlantSave() {
                     )
                 }
 
-                <Button title="Cadastrar planta" onPress={() => { handleSave }} />
+                <Button title="Cadastrar planta" onPress={() => handleSave()} />
             </View>
-        </View>
+        </ScrollView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'space-between',
         backgroundColor: colors.shape
     },
     plantInfo: {
-        flex: 1,
         paddingVertical: 50,
         paddingHorizontal: 30,
         alignItems: 'center',
