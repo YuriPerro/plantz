@@ -10,6 +10,7 @@ import { Load } from '../components/Load';
 
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
+import { useNavigation } from '@react-navigation/core';
 
 interface EnviromentProps {
     key: string,
@@ -30,6 +31,8 @@ interface PlantsProps {
 }
 
 export function PlantSelect() {
+
+    const navigation = useNavigation();
 
     const [enviroments, setEnviroments] = useState<EnviromentProps[]>([]);
     const [filteredPlants, setFilteredPlants] = useState<PlantsProps[]>([]);
@@ -101,6 +104,10 @@ export function PlantSelect() {
         fetchPlants();
     }
 
+    function handlePlantSelect(plant: PlantsProps) {
+        navigation.navigate('PlantSave');
+    }
+
     if (loading)
         return <Load />
     return (
@@ -137,7 +144,7 @@ export function PlantSelect() {
                     data={filteredPlants}
                     keyExtractor={(item) => String(item.id)}
                     renderItem={({ item, index }) => (
-                        <PlantCardPrimary key={index} data={item} />
+                        <PlantCardPrimary key={index} data={item} onPress={() => handlePlantSelect(item)} />
                     )}
                     showsVerticalScrollIndicator={false}
                     numColumns={2}
