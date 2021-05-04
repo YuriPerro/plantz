@@ -14,6 +14,7 @@ import { formatDistance } from 'date-fns';
 import { pt } from 'date-fns/locale';
 import fonts from '../styles/fonts';
 import { PlantCardSecondary } from '../components/PlantCardSecondary';
+import { Load } from '../components/Load';
 
 
 export function MyPlants() {
@@ -23,7 +24,6 @@ export function MyPlants() {
     const [nextWatered, setNextWatered] = useState<string>();
 
     useEffect(() => {
-
         async function loadStorageData() {
             const plantsStoraged = await loadPlant();
 
@@ -40,10 +40,11 @@ export function MyPlants() {
             setMyPlants(plantsStoraged);
             setLoading(false);
         }
-
         loadStorageData();
     }, []);
 
+    if (loading)
+        return <Load />
     return (
         <View style={styles.container}>
             <Header />
@@ -86,7 +87,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingHorizontal: 25,
-        paddingTop: 30,
+        paddingTop: 10,
         backgroundColor: colors.background
     },
     spotlight: {
