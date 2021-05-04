@@ -18,15 +18,6 @@ export default function App() {
     Jost_400Regular, Jost_600SemiBold
   })
 
-  useEffect(() => {
-    const subscriptions = Notifications.addNotificationReceivedListener(
-      async notifications => {
-        const data = notifications.request.content.data.plant as PlantProps
-        console.log(data)
-      })
-    return subscriptions.remove();
-  }, [])
-
   if (!fontsLoaded) {
     return <AppLoading />
   }

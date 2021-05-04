@@ -57,20 +57,22 @@ export function PlantSave() {
 
     async function handleSave() {
         try {
-            await savePlant({
+            const save = await savePlant({
                 ...plant,
                 dateTimeNotification: selectedDateTime
             });
 
-            navigation.navigate('Confirmation', {
-                title: 'Tudo certo!',
-                subTitle: 'Fique tranquilo que sempre vamos lembrar você de cuidar da sua plantinha' +
-                    'com muito cuidado',
-                buttonTitle: 'Muito obrigado :)',
-                icon: 'hug',
-                nextScreen: 'MyPlants'
-            });
+            if(save){
 
+                navigation.navigate('Confirmation', {
+                    title: 'Tudo certo!',
+                    subTitle: 'Fique tranquilo que sempre vamos lembrar você de cuidar da sua plantinha' +
+                    'com muito cuidado',
+                    buttonTitle: 'Muito obrigado :)',
+                    icon: 'hug',
+                    nextScreen: 'MyPlants'
+                });
+            }   
         } catch (error) {
             Alert.alert(
                 'Ops',

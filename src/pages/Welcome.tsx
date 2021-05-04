@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     View,
     SafeAreaView,
@@ -24,7 +24,6 @@ export function Welcome() {
     function handleStart() {
         navigation.navigate('UserIdentification')
     }
-
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.wrapper}>
@@ -71,7 +70,6 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 28,
-        fontWeight: 'bold',
         fontFamily: fonts.heading,
         lineHeight: 34,
         textAlign: 'center',
