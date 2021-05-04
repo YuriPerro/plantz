@@ -58,12 +58,12 @@ export const PlantCardSecondary = ({ data, handleRemove, ...rest }: PlantProps) 
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        paddingHorizontal: 10,
+        paddingHorizontal: 20,
         paddingVertical: 25,
-        borderRadius: 20,
+        borderRadius: 10,
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: colors.shape,
+        backgroundColor: colors.white,
         marginVertical: 5,
     },
     title: {
@@ -90,9 +90,9 @@ const styles = StyleSheet.create({
     },
     buttonRemove: {
         width: 100,
-        height: 85,
+        height: 100,
         backgroundColor: colors.red,
-        marginTop: 15,
+        marginTop: 6,
         borderRadius: 20,
         justifyContent: 'center',
         alignItems: 'center',

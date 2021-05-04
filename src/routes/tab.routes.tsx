@@ -17,7 +17,9 @@ const AuthRoutes = () => {
                 labelPosition: 'below-icon',
                 style: {
                     paddingVertical: Platform.OS === 'android' ? 0 : 20,
-                    height: 88
+                    height: 88,
+                    backgroundColor: colors.green_light,
+                    borderWidth: 0,
                 }
             }}
         >
@@ -31,7 +33,8 @@ const AuthRoutes = () => {
                             size={size}
                             color={color}
                         />
-                    ))
+                    )),
+                    
                 }}
             />
 

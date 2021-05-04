@@ -160,7 +160,7 @@ export function PlantSelect() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.background
+        backgroundColor: colors.green_light
     },
     header: {
         paddingHorizontal: 30
@@ -182,7 +182,8 @@ const styles = StyleSheet.create({
         height: 40,
         justifyContent: 'center',
         paddingBottom: 5,
-        marginLeft: 25,
+        marginRight: 200,
+        marginLeft: 10,
         marginVertical: 32
     },
     plants: {

@@ -62,17 +62,17 @@ export function PlantSave() {
                 dateTimeNotification: selectedDateTime
             });
 
-            if(save){
+            if (save) {
 
                 navigation.navigate('Confirmation', {
                     title: 'Tudo certo!',
                     subTitle: 'Fique tranquilo que sempre vamos lembrar você de cuidar da sua plantinha' +
-                    'com muito cuidado',
+                        ' com muito cuidado.',
                     buttonTitle: 'Muito obrigado :)',
                     icon: 'hug',
                     nextScreen: 'MyPlants'
                 });
-            }   
+            }
         } catch (error) {
             Alert.alert(
                 'Ops',
@@ -113,7 +113,7 @@ export function PlantSave() {
                     </View>
                     <Text style={styles.alertLable}>
                         Escolha o melhor horário para ser lembrado.
-                </Text>
+                    </Text>
 
                     {
                         showDatePicker && (
@@ -121,6 +121,7 @@ export function PlantSave() {
                                 value={selectedDateTime}
                                 mode='time'
                                 display='spinner'
+                                style={{ position: 'relative', bottom: 20 }}
                                 onChange={handleChangeTime}
                             />
                         )
@@ -138,7 +139,9 @@ export function PlantSave() {
                         )
                     }
 
+                    <View style={{ position: 'relative', bottom: 15 }}>
                     <Button title="Cadastrar planta" onPress={() => handleSave()} />
+                    </View>
                 </View>
             </View>
         </ScrollView>
@@ -148,14 +151,14 @@ export function PlantSave() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.shape
+        backgroundColor: colors.white
     },
     plantInfo: {
         paddingVertical: 50,
         paddingHorizontal: 30,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: colors.shape
+        backgroundColor: colors.green_light
     },
     plantName: {
         fontFamily: fonts.heading,
@@ -203,8 +206,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontFamily: fonts.complement,
         color: colors.heading,
-        fontSize: 12,
-        marginBottom: 5
+        fontSize: 15,
+        marginBottom: 5,
+        position: 'relative',
+        bottom: 20
     },
     dateTimePickerButton: {
         width: '100%',

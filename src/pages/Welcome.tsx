@@ -16,6 +16,7 @@ import fonts from '../styles/fonts';
 
 import { Entypo } from "@expo/vector-icons"
 import { useNavigation } from '@react-navigation/core';
+import { StatusBar } from 'expo-status-bar';
 
 export function Welcome() {
 
@@ -26,10 +27,12 @@ export function Welcome() {
     }
     return (
         <SafeAreaView style={styles.container}>
+            <StatusBar style='auto' translucent />
             <View style={styles.wrapper}>
 
                 <Text style={styles.title}>
-                    Gerencie suas {`\n`} plantas de forma fácil
+                    Gerencie suas {`\n`} plantas de forma prática {`\n`}
+                    e fácil
                 </Text>
 
                 <Image
@@ -41,7 +44,7 @@ export function Welcome() {
                 <Text style={styles.subTitle}>
                     Não esqueça mais de regar suas plantas.
                     Nós cuidamos de lembrar você sempre que precisar.
-            </Text>
+                </Text>
 
                 <TouchableOpacity
                     style={styles.button}
@@ -61,6 +64,7 @@ export function Welcome() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: colors.green_light
     },
     wrapper: {
         flex: 1,
@@ -88,17 +92,20 @@ const styles = StyleSheet.create({
         width: width * 0.7,
     },
     button: {
-        width: 56,
+        position: 'relative',
+        left: 100,
+        width: Dimensions.get('window').width / 2,
         height: 56,
         backgroundColor: colors.green,
-        borderRadius: 15,
-        alignItems: 'center',
+        marginBottom: 10,
         justifyContent: 'center',
-        marginBottom: 10
+        paddingLeft: 20,
+        borderTopLeftRadius: 10,
+        borderBottomLeftRadius: 10,
     },
     buttonIcon: {
         color: colors.white,
-        fontSize: 30
+        fontSize: 35
     },
 
 })

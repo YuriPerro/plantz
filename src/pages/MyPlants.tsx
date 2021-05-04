@@ -116,12 +116,12 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingHorizontal: 25,
         paddingTop: 10,
-        backgroundColor: colors.background
+        backgroundColor: colors.green_light
     },
     spotlight: {
         backgroundColor: colors.blue_light,
         paddingHorizontal: 20,
-        borderRadius: 20,
+        borderRadius: 10,
         height: 110,
         flexDirection: 'row',
         justifyContent: 'space-between',

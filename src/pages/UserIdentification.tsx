@@ -50,8 +50,8 @@ export function UserIdentification() {
         try {
             await AsyncStorage.setItem('@plantmanager:userName', name);
             navigation.navigate('Confirmation', {
-                title: 'Prontinho',
-                subTitle: 'Agora vamos começar a cuidar das suas plantinhas com muito cuidado!',
+                title: `Prontinho ${name}!`,
+                subTitle: 'Agora vamos começar a cuidar das suas plantinhas!',
                 buttonTitle: 'Começar',
                 icon: 'smile',
                 nextScreen: 'PlantSelect'
@@ -115,7 +115,8 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+        backgroundColor: colors.green_light
     },
     content: {
         flex: 1,

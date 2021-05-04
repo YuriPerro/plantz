@@ -67,6 +67,7 @@ export function Confirmation() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: colors.green_light
     },
     content: {
         flex: 1,
