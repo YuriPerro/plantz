@@ -113,7 +113,6 @@ export function PlantSave() {
                         Escolha o melhor horário para ser lembrado.
                 </Text>
 
-
                     {
                         showDatePicker && (
                             <DateTimePicker
@@ -124,7 +123,6 @@ export function PlantSave() {
                             />
                         )
                     }
-
                     {
                         Platform.OS === 'android' && (
                             <TouchableOpacity
