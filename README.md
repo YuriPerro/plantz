@@ -59,5 +59,7 @@ or
 * Licensed for users and contributors under MIT license.
 * [M.I.T](https://github.com/YuriPerro/go.move/blob/main/LICENSE)
 
+💡 PS: Feel free to send any ideas or modifications to the project
+
 ---
 <p align="center">Developed with 💜 by Yuri Baumgartner</p>
