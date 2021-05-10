@@ -16,7 +16,6 @@ import { pt } from 'date-fns/locale';
 import fonts from '../styles/fonts';
 import { PlantCardSecondary } from '../components/PlantCardSecondary';
 import { Load } from '../components/Load';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export function MyPlants() {
 
