@@ -14,7 +14,7 @@ import {
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 import { Button } from "../components/Button";
-import { useNavigation } from "@react-navigation/core";
+import { StackActions, useNavigation } from "@react-navigation/core";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -47,13 +47,15 @@ export function UserIdentification() {
     }
     try {
       await AsyncStorage.setItem("@plantmanager:userName", name);
-      navigation.navigate("Confirmation", {
-        title: `Prontinho ${name}!`,
-        subTitle: "Agora vamos começar a cuidar das suas plantinhas!",
-        buttonTitle: "Começar",
-        icon: "smile",
-        nextScreen: "PlantSelect",
-      });
+      navigation.dispatch(
+        StackActions.replace("Confirmation", {
+          title: `Prontinho ${name}!`,
+          subTitle: "Agora vamos começar a cuidar das suas plantinhas!",
+          buttonTitle: "Começar",
+          icon: "smile",
+          nextScreen: "PlantSelect",
+        })
+      );
     } catch {
       Alert.alert("Ops", "Não foi possível salvar seu nome, tente novamente! 😉");
     }

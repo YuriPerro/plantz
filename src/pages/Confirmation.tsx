@@ -38,7 +38,6 @@ export function Confirmation() {
     } = routes.params as Params;
 
     function handleMoveOn() {
-        navigation.navigate(nextScreen);
         navigation.dispatch(StackActions.replace(nextScreen))
     }
 

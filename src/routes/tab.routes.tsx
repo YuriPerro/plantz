@@ -1,7 +1,7 @@
 import React from "react";
 import colors from "../styles/colors";
 import { PlantSelect } from "../pages/PlantSelect";
-import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { MyPlants } from "../pages/MyPlants";
 import { Platform } from "react-native";
 
@@ -25,13 +25,7 @@ const AuthRoutes = () => (
     tabBarOptions={{
       activeTintColor: colors.green,
       inactiveTintColor: colors.heading,
-      labelPosition: "below-icon",
-      style: {
-        paddingVertical: Platform.OS === "android" ? 0 : 20,
-        height: 88,
-        backgroundColor: colors.green_light,
-        borderWidth: 0,
-      },
+      activeBackgroundColor: colors.green_light
     }}
     appearance={{}}
   >
@@ -49,7 +43,7 @@ const AuthRoutes = () => (
       component={MyPlants}
       options={{
         tabBarIcon: ({ size, color }: TabProps) => (
-          <MaterialIcons name="format-list-bulleted" size={size} color={color} />
+          <Ionicons name="list-circle-outline" size={size} color={color} />
         ),
       }}
     />
