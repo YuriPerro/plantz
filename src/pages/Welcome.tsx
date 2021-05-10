@@ -25,6 +25,7 @@ export function Welcome() {
     function handleStart() {
         navigation.navigate('UserIdentification')
     }
+    
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar style='auto' translucent />
