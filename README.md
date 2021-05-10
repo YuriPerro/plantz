@@ -51,8 +51,13 @@ or
 4. expo start
 ```
 💻 Starting fake server api:
+
+1. Open CMD in administration mode
+2. Run ```ipconfig /all```
+3. Copy the IPV4 number
+4. Paste your IPV4 in code below and run
 ```
-5. json-server ./src/services/server.json --host 192.168.0.105 --port 3333 --delay 700
+json-server ./src/services/server.json --host <YOUR_IPV4_HERE> --port 3333 --delay 700
 ```
 ## 📃License
 
