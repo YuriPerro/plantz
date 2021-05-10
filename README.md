@@ -45,8 +45,7 @@ The project can be built with npm or yarn, so choose one of the approach bellow 
 3. yarn install
 4. expo start
 ```
-<p align="center">or</p>
-
+or
 ```
 3. npm install
 4. expo start
