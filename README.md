@@ -54,4 +54,10 @@ or
 ```
 5. json-server ./src/services/server.json --host 192.168.0.105 --port 3333 --delay 700
 ```
+## 📃License
 
+* Licensed for users and contributors under MIT license.
+* [M.I.T](https://github.com/YuriPerro/go.move/blob/main/LICENSE)
+
+---
+<p align="center">Developed with 💜 by Yuri Baumgartner</p>
