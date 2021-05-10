@@ -29,3 +29,30 @@ The project can be built with npm or yarn, so choose one of the approach bellow 
 * **React Native CLI** is a package that contains tools and helpers for React Native projects in form of a command line tool.  [Download React Native CLI](https://facebook.github.io/react-native/docs/getting-started)
 
 * **Expo CLI** is a command line app that is the main interface between a developer and Expo tools. [Download Expo CLI](https://docs.expo.io/get-started/installation/)
+
+## ⚒️ How to Install
+
+* To download the project follow the instructions bellow:
+
+```
+1. git clone https://github.com/YuriPerro/plantz.git
+2. cd plantz
+```
+
+🎯 Install the dependencies and start the server:
+
+```
+3. yarn install
+4. expo start
+```
+<p align="center">or</p>
+
+```
+3. npm install
+4. expo start
+```
+💻 Starting fake server api:
+```
+5. json-server ./src/services/server.json --host 192.168.0.105 --port 3333 --delay 700
+```
+
