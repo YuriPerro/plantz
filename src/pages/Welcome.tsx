@@ -51,6 +51,7 @@ export function Welcome() {
                     activeOpacity={0.7}
                     onPress={handleStart}
                 >
+                    <Text style={styles.txtBtn}>Avançar</Text>
                     <Entypo
                         name="chevron-right"
                         style={styles.buttonIcon}
@@ -98,14 +99,21 @@ const styles = StyleSheet.create({
         height: 56,
         backgroundColor: colors.green,
         marginBottom: 10,
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         paddingLeft: 20,
         borderTopLeftRadius: 10,
         borderBottomLeftRadius: 10,
+
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     buttonIcon: {
         color: colors.white,
         fontSize: 35
     },
-
+    txtBtn: {
+        fontFamily: fonts.heading,
+        color: colors.white,
+        fontSize: 17
+    }
 })
