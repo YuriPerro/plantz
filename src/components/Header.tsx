@@ -14,6 +14,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import YuriProfile from '../assets/yuriPerro.png';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
+import Avatar from './Avatar';
+
 
 let marginWithPlatform = Platform.OS === 'ios' ? getStatusBarHeight() : StatusBar.currentHeight
 
@@ -35,9 +37,11 @@ export function Header() {
             <View>
                 <Text style={styles.greeting}>Olá,</Text>
                 <Text style={styles.userName}>{userName}</Text>
-            </View>
+            </View> 
 
-            <Image source={YuriProfile} style={styles.img} />
+            <View style={styles.avatar}>
+                <Avatar width={25} height={25} />
+            </View>
 
         </View>
     );
@@ -67,5 +71,15 @@ const styles = StyleSheet.create({
         fontFamily: fonts.heading,
         color: colors.heading,
         lineHeight: 40
+    },
+    avatar: {
+        width: 50,
+        height: 50,
+        borderWidth: 2,
+        borderColor: colors.green,
+        padding: 10,
+        borderRadius: 50,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });
