@@ -3,7 +3,6 @@ import colors from "../styles/colors";
 import { PlantSelect } from "../pages/PlantSelect";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { MyPlants } from "../pages/MyPlants";
-import { Platform } from "react-native";
 
 import {
   AnimatedTabBarNavigator,
