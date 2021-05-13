@@ -10,10 +10,10 @@ import { PlantSave } from '../pages/PlantSave';
 import { MyPlants } from '../pages/MyPlants';
 import AuthRoutes from './tab.routes';
 
-const stackRoutes = createStackNavigator();
+const StackRoutes = createStackNavigator();
 
 const AppRoutes: React.FC = () => (
-    <stackRoutes.Navigator
+    <StackRoutes.Navigator
         headerMode="none"
         screenOptions={{
             cardStyle: {
@@ -21,31 +21,31 @@ const AppRoutes: React.FC = () => (
             }
         }}
     >
-        <stackRoutes.Screen
+        <StackRoutes.Screen
             name="Welcome"
             component={Welcome}
         />
-        <stackRoutes.Screen
+        <StackRoutes.Screen
             name="UserIdentification"
             component={UserIdentification}
         />
-        <stackRoutes.Screen
+        <StackRoutes.Screen
             name="Confirmation"
             component={Confirmation}
         />
-        <stackRoutes.Screen
+        <StackRoutes.Screen
             name="PlantSelect"
             component={AuthRoutes}
         />
-        <stackRoutes.Screen
+        <StackRoutes.Screen
             name="PlantSave"
             component={PlantSave}
         />
-        <stackRoutes.Screen
+        <StackRoutes.Screen
             name="MyPlants"
             component={AuthRoutes}
         />
-    </stackRoutes.Navigator>
+    </StackRoutes.Navigator>
 )
 
 export default AppRoutes;
