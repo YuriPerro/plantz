@@ -52,7 +52,7 @@ or
 ```
 💻 Starting fake server api:
 
-1. Open CMD in administration mode
+1. Open Prompt command (CMD) in administration mode
 2. Run ```ipconfig /all```
 3. Copy the IPV4 number
 4. Paste your IPV4 in code below and run
