@@ -57,7 +57,8 @@ or
 1. Open Prompt command (CMD) in administration mode
 2. Run ```ipconfig /all```
 3. Copy the IPV4 number
-4. Paste your IPV4 in code below and run
+4. Open file ```./src/services/api.ts``` and replace all "XX" on ```baseURL:XXXXXXXXXXX``` to <YOUT_IPV4_HERE>:3333
+5. Paste your IPV4 in code below and run
 ```
 json-server ./src/services/server.json --host <YOUR_IPV4_HERE> --port 3333 --delay 700
 ```
