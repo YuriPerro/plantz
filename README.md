@@ -52,7 +52,7 @@ or
 3. npm install
 4. expo start
 ```
-💻 Starting fake server api:
+💻 Starting fake server api
 
 1. Open Prompt command (CMD) in administration mode
 2. Run ```ipconfig /all```
