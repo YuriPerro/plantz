@@ -69,6 +69,5 @@ json-server ./src/services/server.json --host <YOUR_IPV4_HERE> --port 3333 --del
 
 💡 PS: Feel free to send any ideas or modifications to the project
 
-
 ---
 <p align="center">Developed with 💜 by Yuri Baumgartner</p>
